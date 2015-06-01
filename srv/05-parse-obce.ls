@@ -3,16 +3,16 @@ require! {
   jsdom:{env}
   async
 }
-outStream = fs.createWriteStream "#__dirname/../data/fed/vyledky2.tsv"
-okresy = fs.readdirSync "#__dirname/../data/fed/obce"
-okresy .= slice 2318
+outStream = fs.createWriteStream "#__dirname/../data/narada/vyledky.tsv"
+okresy = fs.readdirSync "#__dirname/../data/narada/obce"
+# okresy .= slice 2318
 i = 0
-columns = <[obec volici 03 04 06 07 08 09 10 11 12 13 18 19 20 21 22 23]>
+columns = <[obec volici 03 06 07 08 09 10 11 13 18 20 21 22 23]>
 outStream.write columns.join "\t"
 async.eachSeries okresy, (file, cb) ->
   console.log i++
   obecId = file.split "." .0
-  data = fs.readFileSync "#__dirname/../data/fed/obce/#file" .toString!
+  data = fs.readFileSync "#__dirname/../data/narada/obce/#file" .toString!
   line = columns.map (d, i) -> if i then 0 else obecId
   (err, {document}:window) <~ env data
   rows = document.querySelectorAll "table:nth-of-type(2) tr"
