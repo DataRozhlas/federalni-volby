@@ -3,8 +3,8 @@ require! {
   jsdom:{env}
   async
 }
-outStream = fs.createWriteStream "#__dirname/../data/narada/obce.txt"
-okresy = fs.readdirSync "#__dirname/../data/narada/okresy" .map -> "#__dirname/../data/narada/okresy/#it"
+outStream = fs.createWriteStream "#__dirname/../data/ucelky/obce.txt"
+okresy = fs.readdirSync "#__dirname/../data/ucelky/okresy" .map -> "#__dirname/../data/ucelky/okresy/#it"
 i = 0
 async.eachSeries okresy, (file, cb) ->
   console.log i++
