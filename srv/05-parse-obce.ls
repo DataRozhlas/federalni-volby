@@ -18,6 +18,8 @@ async.eachSeries okresy, (file, cb) ->
   rows = document.querySelectorAll "table:nth-of-type(2) tr"
   line[1] = document.querySelector "table:nth-of-type(1) tr:nth-child(3) td:nth-child(4)" .innerHTML
     .replace /&nbsp;/g ''
+  line[2] = document.querySelector "table:nth-of-type(1) tr:nth-child(3) td:nth-child(5)" .innerHTML
+    .replace /&nbsp;/g ''
   for row, index in rows
     continue if index <= 1
     id1 = row.querySelector "td:nth-child(1) a"
