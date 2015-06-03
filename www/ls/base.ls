@@ -78,6 +78,10 @@ winnersLayerShaded = dataLayers["winners-amount"] = L.tileLayer do
     * "../data/tiles/narodni-rada-vitezove-shaded/{z}/{x}/{y}.png"
     * zIndex: 2
 
+ucastLayer = dataLayers["ucast"] = L.tileLayer do
+    * "../data/tiles/narodni-rada-ucast/{z}/{x}/{y}.png"
+    * zIndex: 2
+
 for kandidat in kandidati.filter (.map)
   dataLayers[kandidat.map] = L.tileLayer do
     * "../data/tiles/narodni-rada-#{kandidat.map}/{z}/{x}/{y}.png"
@@ -93,6 +97,8 @@ layers =
     map: "winners"
   * name: "Vítězové (sytost podle náskoku)"
     map: "winners-amount"
+  * name: "Volební účast"
+    map: "ucast"
 layers ++= kandidati.filter (.map)
 
 container.append \select
@@ -108,7 +114,14 @@ container.append \select
 setBackground = ->
   zoom = map.getZoom!
   isChoropleth = currentLayer in [winnersLayer, winnersLayerShaded]
-  if not isChoropleth
+  if currentLayer is ucastLayer
+    if zoom >= 10
+      baseLayer.setOpacity 0.5
+      labelLayer.setOpacity 0.7
+    else
+      baseLayer.setOpacity 0.18
+      labelLayer.setOpacity 0
+  else if not isChoropleth
     mapElement.style \background-color \black
     if zoom >= 9
       labelLayer.setOpacity 0.7
@@ -118,7 +131,6 @@ setBackground = ->
       baseLayer.setOpacity 1
     else
       baseLayer.setOpacity 0.2
-
   else
     mapElement.style \background-color \white
     baseLayer.setOpacity 0.8

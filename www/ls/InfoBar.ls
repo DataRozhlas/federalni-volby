@@ -22,7 +22,7 @@ class ig.Infobar
     if !volicu
       @helpText.html "Bohužel, pro tuto obec nemáme k dispozici data"
     else
-      @helpText.html ""
+      @helpText.html "Volební účast: #{ig.utils.formatNumber 100 * obalek / volicu} %"
     @strany.style \top -> "#{it.index * lineHeight}px"
     @stranyPercent.html ->
       if it.nesestavila
