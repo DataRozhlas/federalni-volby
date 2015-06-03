@@ -13,7 +13,6 @@ map = L.map do
     zoom: 7,
     center: [49.78, 15.5]
     maxBounds: [[48.3,11.6], [51.3,19.1]]
-
 baseLayer = L.tileLayer do
   * "https://samizdat.cz/tiles/ton_b1/{z}/{x}/{y}.png"
   * zIndex: 1
@@ -104,7 +103,34 @@ container.append \select
     map.removeLayer currentLayer
     currentLayer := dataLayers[@value]
       ..addTo map
+    setBackground!
 
+setBackground = ->
+  zoom = map.getZoom!
+  isChoropleth = currentLayer in [winnersLayer, winnersLayerShaded]
+  if not isChoropleth
+    mapElement.style \background-color \black
+    if zoom >= 9
+      labelLayer.setOpacity 0.7
+    else
+      labelLayer.setOpacity 0.1
+    if zoom >= 11
+      baseLayer.setOpacity 1
+    else
+      baseLayer.setOpacity 0.2
+
+  else
+    mapElement.style \background-color \white
+    baseLayer.setOpacity 0.8
+    labelLayer.setOpacity 0.8
+    if currentLayer is winnersLayer
+      if zoom > 10
+        currentLayer.setOpacity 0.4
+      else
+        currentLayer.setOpacity 0.7
+
+setBackground!
+map.on \zoomend setBackground
 
 (err, text) <~ d3.text "/tools/suggester/0.0.1/okresy_obce.tsv"
 [okresy, obce] = text.split "\n\n"
@@ -145,4 +171,6 @@ new ig.Suggester suggesterContainer, obce
   ..on 'selected' (obec) ->
       map.setView [obec.lat, obec.lon], 12
       setOutline obec.id
+
+
 
