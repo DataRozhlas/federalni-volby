@@ -1,5 +1,5 @@
 window.ig =
-  projectName : "federalni-volby"
+  projectName : "prezidentske-volby-revival"
   containers: {}
 
 _gaq?.push(['_trackEvent', 'ig', ig.projectName]);

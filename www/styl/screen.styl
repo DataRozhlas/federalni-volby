@@ -4,5 +4,150 @@
 
 .ig
   @import basics
+  @import Suggester
 .ig
-  background yellow
+  .map
+    position absolute
+    top 0px
+    left 0px
+    bottom 0px
+    width calc(100% - 330px)
+    background white
+  select
+    position absolute
+    top 10px
+    left 50px
+  .infobar
+    z-index 5
+    position absolute
+    top 0px
+    right 0px
+    width 330px
+    height 100vh
+    background lighten(ColorGreyBg, 80%)
+    border-left 1px solid lighten(ColorGreyBg, 30%)
+    padding-left 15px
+    padding-right 15px
+    .logo
+      width 80px
+      height auto
+      position absolute
+      bottom 50px
+      left 50%
+      opacity 0.1
+      margin-left (@width * -0.5)
+
+    h2
+      color ColorHeading
+      overflow hidden
+      width 100%
+      white-space nowrap
+      text-overflow ellipsis
+      margin 15px 0px 5px 0px
+    .clickInvite
+      margin 9px 0px 0px 0px
+      color lighten(black, 40%)
+      font-style italic
+    h3
+      margin 15px 0px 10px 0px
+      &.genderH
+        margin-top 33px
+      // &.titulyH
+      //   margin-top 45px
+    .strany-cont
+      list-style-type none
+      padding 0px
+      position relative
+      padding-bottom (9*33px)
+      width 100%
+      .strana
+        position absolute
+        left 0px
+        padding-left 30px
+        width 300px
+        transition top 0.2s
+        .kost
+          position absolute
+          top 1px
+          left 0px
+          width 20px
+          height 20px
+          border-radius 3px
+        .nazev
+          color #111
+          font-variant small-caps
+        .hlasu
+          position absolute
+          right 0px
+          .absolute
+            position absolute
+            right 40px
+            color #666
+            width 60px
+            text-align right
+            font-variant small-caps
+            font-size 0.8em
+        .bar
+          position absolute
+          bottom -2px
+          left 30px
+          width 270px
+          height 2px
+          transition width 0.2s
+        &.nesestavila
+          .nazev
+          .relative
+            color #666
+          .relative
+            font-variant small-caps
+            font-size 0.8em
+          .absolute
+            display none
+
+
+    &.noData
+      h3
+      .titulLegend .text
+      .stats h4
+      .stats .value
+      .ageHistogram .field .legend
+      .gender .center-text
+        color #b
+      .gender
+      .tituly
+      .titulLegend .legendBg
+      .ageHistogram .field
+        background #ddd
+        border-color #ddd
+      .gender .center
+        triangle 12px, 7px, 'top', #ddd
+      .kost
+        background #ddd !important
+      .bar
+      .absolute
+      .relative
+        display none
+      .nazev
+        color #aaa !important
+  .legend
+    &.hidden
+      display none
+    position absolute
+    bottom 20px
+    right 15px
+    width 300px
+    height 18px
+    background yellow
+    z-index 5
+    overflow hidden
+    border-radius 3px
+    .field
+      float left
+      width (300px / 9)
+      height @height
+      text-align center
+      &:nth-child(6)
+      &:nth-child(7)
+      &:nth-child(8)
+      &:nth-child(9)
+        color white
