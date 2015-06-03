@@ -1,4 +1,5 @@
 .~lock.*
+*.qgs~
 *.lock
 ~$*
 .Rproj.user
@@ -22,3 +23,4 @@ azure-upload-settings.json
 /data/fed
 /data/narada
 /data/ucelky
+/data/tiles
